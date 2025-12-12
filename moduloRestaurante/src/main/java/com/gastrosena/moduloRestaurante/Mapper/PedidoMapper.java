@@ -16,7 +16,8 @@ public class PedidoMapper {
 
     @Autowired
     private ProductoRepository productoRepository; //AQUI BUSCARA LOS PRECIOS Y NOMBRES REALES
-
+    @Autowired
+    private DetallePedidoMapper detalleMapper;
     public Pedido fromDTO(PedidoRequestDTO dto) {
         Pedido pedido = new Pedido();
 
@@ -53,12 +54,12 @@ public class PedidoMapper {
 
 
                 // E. ¡AQUÍ SE USA TU MÉTODO HELPER!
-                // Esto vincula el hijo con el padre automáticamente
+
                 pedido.agregarDetalle(detalle);
             }
         }
 
-        // 3. Asignar el total calculado por nosotros (es más seguro)
+
         pedido.setTotalFinal(totalCalculado);
 
         return pedido;
