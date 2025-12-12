@@ -2,15 +2,13 @@ package com.gastrosena.moduloRestaurante.Entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,7 +25,7 @@ public class Pedido {
     @Column(name = "id_mesa", nullable = false)
     private Long idMesero;
 
-    @Column (name = "cliente")
+    @Column(name = "cliente")
     private String cliente;
 
     @Column(name = "total_final")
@@ -36,7 +34,7 @@ public class Pedido {
     // este metodo sera para el swagger
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
-    private EstadoPedido estado = EstadoPedido.REGISTRADO;//AQUI ESTARA EL REGISTRADO
+    private EstadoPedido estado = EstadoPedido.REGISTRADO;//AQUI ESTARA EL REGISTRADO COMO INICIAL
 
     @JsonManagedReference
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -47,13 +45,9 @@ public class Pedido {
         detalle.setPedido(this);
     }
 
-    //Aqui voy a dejar el enum para los estados del pedido
+    public void setIdMesa(Long idMesa) {
+    }
 
-    enum EstadoPedido{
-        REGISTRADO,
-        EN_PREPARACION,
-        ENTREGADO,
-        CERRADO,
-        ANULADO
+    public void setObservaciones(String observaciones) {
     }
 }
