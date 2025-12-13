@@ -1,9 +1,7 @@
-package com.gastrosena.moduloRestaurante.Entity;
-
+package com.gastrosena.moduloRestaurante.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "pedidos")
+@Builder
 public class Pedido {
 
     @Id
@@ -23,10 +22,10 @@ public class Pedido {
     private Long idPedido;
 
     @Column(name = "id_mesa", nullable = false)
-    private Long idMesero;
+    private String idMesa;
 
-    @Column(name = "cliente")
-    private String cliente;
+    @Column (name = "id_mesero", nullable = false)
+    private String idMesero;
 
     @Column(name = "total_final")
     private BigDecimal totalFinal = BigDecimal.ZERO;
@@ -34,7 +33,7 @@ public class Pedido {
     // este metodo sera para el swagger
     @Enumerated(EnumType.STRING)
     @Column(name = "estado")
-    private EstadoPedido estado = EstadoPedido.REGISTRADO;//AQUI ESTARA EL REGISTRADO COMO INICIAL
+    private EstadoPedido estado = EstadoPedido.REGISTRADO;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,11 +42,5 @@ public class Pedido {
     public void agregarDetalle(DetallePedido detalle) {
         detalles.add(detalle);
         detalle.setPedido(this);
-    }
-
-    public void setIdMesa(Long idMesa) {
-    }
-
-    public void setObservaciones(String observaciones) {
     }
 }

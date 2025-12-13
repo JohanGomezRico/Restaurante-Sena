@@ -1,4 +1,4 @@
-package com.gastrosena.moduloRestaurante.Entity;
+package com.gastrosena.moduloRestaurante.entity;
 
 import java.math.BigDecimal;
 
@@ -30,6 +30,5 @@ public class Producto {
     @Column(name = "precio_actual", nullable = false)
     private BigDecimal precioActual;
 
-    @Column(name = "es_cocina", nullable = false)
-    private Boolean esCocina;
+
 }

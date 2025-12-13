@@ -1,10 +1,9 @@
-package com.gastrosena.moduloRestaurante.Entity;
+package com.gastrosena.moduloRestaurante.entity;
 
 public enum EstadoPedido {
     REGISTRADO,
     EN_PREPARACION,
     LISTO,
     ENTREGADO,
-    CERRADO,
     ANULADO
 }

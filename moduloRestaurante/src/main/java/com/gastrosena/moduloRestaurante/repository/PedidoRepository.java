@@ -1,6 +1,6 @@
-package com.gastrosena.moduloRestaurante.Repository;
+package com.gastrosena.moduloRestaurante.repository;
 
-import com.gastrosena.moduloRestaurante.Entity.Pedido;
+import com.gastrosena.moduloRestaurante.entity.Pedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

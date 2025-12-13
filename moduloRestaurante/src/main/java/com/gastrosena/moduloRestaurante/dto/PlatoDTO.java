@@ -1,6 +1,5 @@
-package com.gastrosena.moduloRestaurante.DTO;
+package com.gastrosena.moduloRestaurante.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,5 @@
-package com.gastrosena.moduloRestaurante.Entity;
+package com.gastrosena.moduloRestaurante.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,20 +23,21 @@ public class DetallePedido {
     @Column(name = "precio_congelado", nullable = false)
     private BigDecimal precioCongelado; // guarda el precio del momento de la venta
 
-    @Column (name = "observaciones")
+    @Column(name = "observaciones")
     private String observaciones;
 
     //relaciones
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pedido", nullable = false)
+    @JsonBackReference
     private Pedido pedido;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
 
-    @Column (name = "estado_item")
+    @Column(name = "estado_item")
     private String estadoItem;
 
 }
