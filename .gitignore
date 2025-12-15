@@ -1,10 +1,26 @@
+# ===============================
+# Maven / Java
+# ===============================
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# ===============================
+# IDEs
+# ===============================
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+### Eclipse / STS ###
 .apt_generated
 .classpath
 .factorypath
@@ -12,12 +28,6 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
-*.ipr
 
 ### NetBeans ###
 /nbproject/private/
@@ -29,8 +39,15 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
-.vscode/
-
-### Proteger datos MySQl ###
+# ===============================
+# ENV / SECRETS
+# ===============================
 .env
+.env.*
+!.env.example
+
+# ===============================
+# Docker
+# ===============================
+mysql_data/
+docker-data/

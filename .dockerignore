@@ -1,0 +1,9 @@
+target
+.idea
+.git
+.gitignore
+*.iml
+*.log
+.env
+
+#.env.local lo ignoramos para no meter credenciales dentro de la imagen. Con compose lo pasamos como env.
