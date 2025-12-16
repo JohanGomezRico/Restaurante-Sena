@@ -1,6 +1,6 @@
 # ---- Build stage ----
 # Imagen base de Java
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk
 
 # Crear un directorio de trabajo dentro del contenedor
 WORKDIR /app
