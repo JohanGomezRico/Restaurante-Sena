@@ -6,7 +6,7 @@ Crear un directorio de trabajo dentro del contenedor
 WORKDIR /app
 
 Copiar el archivo .jar del proyecto al contenedor
-COPY target/restaurApp-0.0.1-SNAPSHOT.jar app.jar
+COPY target/modulo_restaurante_back-0.0.1-SNAPSHOT.jar app.jar
 
 Exponer el puerto donde corre Spring Boot
 EXPOSE 8080
