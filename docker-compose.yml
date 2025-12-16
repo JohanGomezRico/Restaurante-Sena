@@ -1,41 +1,43 @@
-services:
-  db:
-    image: mysql:8.3
-    container_name: restaurante-db
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-    ports:
-      - "${DB_PORT}:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_ROOT_PASSWORD}"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
+version: '3.8'
 
-  api:
-    build: .
-    container_name: restaurante-api
-    restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
     environment:
-      DB_HOST: db
-      DB_PORT: 3306
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      # opcional
-      SPRING_PROFILES_ACTIVE: docker
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: modulo_restaurante
+      MYSQL_USER: root
+      MYSQL_PASSWORD:
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_container
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD:
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+
+  backend:
+    build: .
+    container_name: restaurante_sena
+    restart: always
+    depends_on:
+      - mysql
     ports:
       - "8080:8080"
-
-volumes:
-  mysql_data:
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/modulo_restaurante?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=America/Bogota
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
